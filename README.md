@@ -6,7 +6,7 @@
 
 ---
 
-##– Project Overview
+## – Project Overview
 The **Perinatal Support Scheduler** is an academic project that proposes a **digital scheduling system** to support pregnant women and new mothers.  
 It connects mothers with trained volunteers (doulas, nurses, helpers) and ensures **continuity of care**, **risk-based prioritization**, and **efficient scheduling**.
 
