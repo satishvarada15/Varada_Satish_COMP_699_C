@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Administrator Dashboard</h2>
+<p>Manage visit requests, assignments, and volunteer scheduling.</p>
+
+<style>
+    .section-block {
+        background: white;
+        padding: 18px 22px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        box-shadow: 0 0 8px #ddd;
+    }
+    .visit-item {
+        margin-bottom: 12px;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .label {
+        font-weight: bold;
+    }
+    .danger-text { color: #c0392b; }
+    .success-text { color: #27ae60; }
+    .info-text { color: #2980b9; }
+</style>
+
+<!-- ===================================================== -->
+<!-- SECTION 1: VISITS WAITING FOR ADMIN APPROVAL -->
+<!-- ===================================================== -->
+<div class="section-block">
+    <h3>Visits Awaiting Approval</h3>
+    
+    {% for visit in awaiting_approval %}
+    <div class="visit-item">
+        <span class="label">Visit #{{ visit.id }}</span><br>
+        Mother: {{ visit.mother.user.username }}<br>
+        Date: {{ visit.date }} {{ visit.time }}<br>
+
+        Suggested Volunteer:
+        {% if visit.suggested_volunteer %}
+            <strong class="success-text">{{ visit.suggested_volunteer.user.username }}</strong>
+        {% else %}
+            <span class="danger-text">No suggestion available</span>
+        {% endif %}
+        <br><br>
+
+        {% if visit.suggested_volunteer %}
+            <a class="btn" href="{% url 'approve_suggested_volunteer' visit.id %}">
+                Approve Suggested Volunteer
+            </a>
+        {% endif %}
+
+        <a class="btn" href="{% url 'choose_volunteer' visit.id %}">
+            Assign Manually
+        </a>
+    </div>
+    {% empty %}
+    <p class="info-text">No visits waiting for approval.</p>
+    {% endfor %}
+</div>
+
+
+<!-- ===================================================== -->
+<!-- SECTION 2: PENDING VISITS (No decision yet) -->
+<!-- ===================================================== -->
+<div class="section-block">
+    <h3>Pending Visits (Needing Assignment)</h3>
+
+    {% for visit in pending_visits %}
+    <div class="visit-item">
+        <strong>Visit #{{ visit.id }}</strong><br>
+        Mother: {{ visit.mother.user.username }}<br>
+        Date: {{ visit.date }} {{ visit.time }}<br>
+
+        Suggested Volunteer:
+        {% if visit.suggested_volunteer %}
+            {{ visit.suggested_volunteer.user.username }}
+            <br>
+            <a class="btn" href="{% url 'approve_suggested_volunteer' visit.id %}">
+                Approve Suggested
+            </a>
+        {% else %}
+            <span class="danger-text">No automatic suggestion found</span><br>
+        {% endif %}
+        <br>
+
+        <a class="btn" href="{% url 'choose_volunteer' visit.id %}">
+            Assign Manually
+        </a>
+    </div>
+    {% empty %}
+    <p>No pending visits.</p>
+    {% endfor %}
+</div>
+
+
+<!-- ===================================================== -->
+<!-- SECTION 3: SCHEDULED VISITS -->
+<!-- ===================================================== -->
+<div class="section-block">
+    <h3>Scheduled Visits</h3>
+
+    {% for visit in scheduled_visits %}
+    <div class="visit-item">
+        Visit #{{ visit.id }}<br>
+        Mother: {{ visit.mother.user.username }}<br>
+        Volunteer: {{ visit.volunteer.user.username }}<br>
+        Date: {{ visit.date }} {{ visit.time }}<br>
+    </div>
+    {% empty %}
+    <p>No scheduled visits.</p>
+    {% endfor %}
+</div>
+
+
+<!-- ===================================================== -->
+<!-- SECTION 4: COMPLETED VISITS -->
+<!-- ===================================================== -->
+<div class="section-block">
+    <h3>Completed Visits</h3>
+
+    {% for visit in completed_visits %}
+    <div class="visit-item">
+        Visit #{{ visit.id }}<br>
+        Mother: {{ visit.mother.user.username }}<br>
+        Volunteer: {{ visit.volunteer.user.username }}<br>
+        <span class="success-text">Completed</span>
+    </div>
+    {% empty %}
+    <p>No completed visits yet.</p>
+    {% endfor %}
+</div>
+
+
+<!-- ===================================================== -->
+<!-- SECTION 5: VOLUNTEERS -->
+<!-- ===================================================== -->
+<div class="section-block">
+    <h3>Volunteers</h3>
+
+    {% for v in volunteers %}
+    <div class="visit-item">
+        {{ v.user.username }}  
+        | Skills: {{ v.skills }}  
+        | Limit: {{ v.service_limit }}
+    </div>
+    {% empty %}
+    <p>No volunteers found.</p>
+    {% endfor %}
+</div>
+
+
+<!-- ===================================================== -->
+<!-- SECTION 6: MOTHERS -->
+<!-- ===================================================== -->
+<div class="section-block">
+    <h3>Mothers</h3>
+
+    {% for m in mothers %}
+    <div class="visit-item">
+        {{ m.user.username }}  
+        | Due Date: {{ m.due_date }}  
+        | Risk Level: {{ m.risk_level }}
+    </div>
+    {% empty %}
+    <p>No mothers registered.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h2>Request a Visit</h2>
+
+    {% if form.errors %}
+        <div class="form-errors">
+            <p>Please correct the errors below:</p>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Submit Request</button>
+    </form>
+</div>
+
+{% endblock %}

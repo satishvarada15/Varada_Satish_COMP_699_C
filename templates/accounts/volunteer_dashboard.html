@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Volunteer Dashboard</h2>
+
+<p>Welcome, {{ volunteer.user.username }}</p>
+
+<a href="{% url 'submit_availability' %}">Submit Availability</a>
+
+<h3>Your Assigned Visits</h3>
+<ul>
+    {% for visit in visits %}
+        <li>
+            {{ visit.date }} - {{ visit.time }} ({{ visit.status }})
+            {% if visit.status != 'Completed' %}
+                - <a href="{% url 'mark_visit_completed' visit.id %}">Mark Completed</a>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No visits assigned.</li>
+    {% endfor %}
+</ul>
+
+<h3>Notifications</h3>
+<ul>
+    {% for note in notifications %}
+        <li>{{ note.message }}</li>
+    {% empty %}
+        <li>No notifications.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

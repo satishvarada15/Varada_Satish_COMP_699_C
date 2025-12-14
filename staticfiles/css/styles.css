@@ -1,0 +1,200 @@
+/* --------------------------------------------------
+   GLOBAL PAGE STYLING
+-------------------------------------------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f7;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Center layout */
+.content {
+    padding: 30px;
+}
+
+/* Smooth fade-in animation */
+.container, ul, form {
+    animation: fadeIn 0.35s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------
+   HEADER & NAVBAR
+-------------------------------------------------- */
+.header {
+    background: linear-gradient(90deg, #4a90e2, #3578c4);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+/* Navigation */
+.navbar {
+    margin-top: 15px;
+}
+
+.navbar a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar a:hover {
+    border-bottom: 2px solid #fff;
+    opacity: 0.9;
+}
+
+/* --------------------------------------------------
+   CARD-LIKE CONTAINER STYLING
+-------------------------------------------------- */
+.container {
+    background: white;
+    padding: 30px 30px;
+    max-width: 850px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.12);
+}
+
+.container h2 {
+    margin-top: 0;
+    color: #3578c4;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+/* --------------------------------------------------
+   BUTTONS — IMPROVED
+-------------------------------------------------- */
+.btn, form button {
+    padding: 12px 22px;
+    background: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
+}
+
+.btn:hover, form button:hover {
+    background: #2d6db3;
+    transform: translateY(-2px);
+}
+
+/* Neutral button option */
+.btn-secondary {
+    background: #888;
+}
+
+.btn-secondary:hover {
+    background: #666;
+}
+
+/* --------------------------------------------------
+   FORM STYLING — UPGRADED
+-------------------------------------------------- */
+form {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid #bfc7d1;
+    background: #f9fbfc;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 6px rgba(74,144,226,0.4);
+}
+
+/* --------------------------------------------------
+   MESSAGE BOXES
+-------------------------------------------------- */
+.messages {
+    max-width: 850px;
+    margin: 20px auto;
+}
+
+.message {
+    padding: 14px;
+    background: #dff0d8;
+    color: #2d6b2d;
+    border-left: 6px solid #3c763d;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/* --------------------------------------------------
+   LIST DISPLAY (Visits, Notifications)
+-------------------------------------------------- */
+ul {
+    background: white;
+    padding: 18px 25px;
+    border-radius: 12px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.12);
+    max-width: 750px;
+    margin: 25px auto;
+    list-style-type: none;
+}
+
+ul li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+/* --------------------------------------------------
+   RESPONSIVE DESIGN
+-------------------------------------------------- */
+@media (max-width: 650px) {
+    .navbar a {
+        display: block;
+        margin: 8px 0;
+    }
+
+    .container, ul {
+        width: 92%;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+}

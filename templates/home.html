@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+    <h2>Welcome to the Perinatal Support Scheduler</h2>
+
+    <p>
+        This platform connects mothers with trained volunteers to ensure safe,
+        timely, and supportive perinatal care throughout pregnancy and postpartum.
+    </p>
+
+    <div class="home-links">
+        <a class="btn" href="{% url 'login' %}">Login</a>
+        <a class="btn" href="{% url 'mother_register' %}">Register as Mother</a>
+        <a class="btn" href="{% url 'volunteer_register' %}">Register as Volunteer</a>
+    </div>
+
+</div>
+
+{% endblock %}

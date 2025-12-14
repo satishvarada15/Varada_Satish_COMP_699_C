@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Assign Volunteer</h2>
+
+<p>
+    Select a volunteer for:
+    <strong>Visit #{{ visit.id }}</strong>
+    — Mother: <strong>{{ visit.mother.user.username }}</strong>
+</p>
+
+<div class="container">
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Volunteer</th>
+            <th>Skills</th>
+            <th>Certifications</th>
+            <th>Limit</th>
+            <th>Workload</th>
+            <th>Assign</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for volunteer in volunteers %}
+        <tr>
+            <td>{{ volunteer.user.username }}</td>
+            <td>{{ volunteer.skills|default:"-" }}</td>
+            <td>{{ volunteer.certifications|default:"-" }}</td>
+            <td>{{ volunteer.service_limit }}</td>
+            <td>{{ volunteer.current_workload }}</td>
+            <td>
+                <a class="btn" href="{% url 'assign_volunteer' visit.id volunteer.id %}">
+                    Assign
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" style="text-align:center; color:red;">
+                No volunteers available.
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+<br>
+<a href="{% url 'dashboard' %}" class="btn">Back to Dashboard</a>
+
+{% endblock %}

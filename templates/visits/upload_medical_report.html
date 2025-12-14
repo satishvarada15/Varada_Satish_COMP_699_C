@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h2>Upload Medical Report</h2>
+
+    {% if form.errors %}
+        <div class="form-errors">
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Upload Report</button>
+    </form>
+</div>
+
+{% endblock %}
